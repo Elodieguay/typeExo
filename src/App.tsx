@@ -1,14 +1,18 @@
 import RecipeCard from "./component/recipeCard";
-import { useRecipes } from "./hook/useRecipes";
+import { useListDummy } from "./hook/useRecipes";
+import { type Recipe } from "./types/dummyTypes";
 
 const App = () => {
-  const { recipes, loading } = useRecipes();
+  const { items, loading } = useListDummy<Recipe>("recipes", {
+    limit: 12,
+    skip: 0,
+  });
 
   if (loading) return <p>Chargement...</p>;
 
   return (
     <ul className="recipes-grid">
-      {recipes.map((recipe) => (
+      {items.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
     </ul>

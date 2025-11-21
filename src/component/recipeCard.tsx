@@ -1,4 +1,4 @@
-import type { Recipe } from "../api/api";
+import type { Recipe } from "../types/dummyTypes";
 
 type RecipeCardProps = {
   recipe: Recipe;
