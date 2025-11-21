@@ -17,27 +17,36 @@ export type Recipe = {
   mealType: string[];
 };
 
-export type RecipesResponse = {
-  recipes: Recipe[];
+// export type RecipesResponse = {
+//   recipes: Recipe[];
+//   total: number;
+//   skip: number;
+//   limit: number;
+// };
+
+export type genericType<T> = {
+  items: T[];
   total: number;
   skip: number;
   limit: number;
 };
 
-export type recipesParams = Partial<
-  Pick<RecipesResponse, "limit" | "skip">
->;
+export type RecipesResponse = genericType<Recipe>;
 
+export type recipesParams = Partial<Pick<RecipesResponse, "limit" | "skip">>;
+export async function recipesDummy(
+  params: recipesParams
+): Promise<RecipesResponse> {
+  const { limit = 30, skip = 0 } = params;
 
-export async function recipesDummy(params: recipesParams ): Promise<RecipesResponse> {
-    const { limit = 30, skip = 0 } = params;
+  const response = await fetch(
+    `https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`
+  );
 
-    const response = await fetch(`https://dummyjson.com/recipes?limit=${limit}&skip=${skip}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch recipes");
+  }
 
-    if (!response.ok) {
-        throw new Error('Failed to fetch recipes');
-    }
-
-    const data: RecipesResponse = await response.json();
-    return data;
+  const data: RecipesResponse = await response.json();
+  return data;
 }
