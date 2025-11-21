@@ -23,9 +23,14 @@ export type Recipe = {
 //   skip: number;
 //   limit: number;
 // };
+// // export type recipesParams = Partial<Pick<RecipesResponse, "limit" | "skip">>;
 
+type ApiParams = {
+  limit?: number;
+  skip?: number;
+};
 export type genericType<T> = {
-  items: T[];
+  recipes: T[];
   total: number;
   skip: number;
   limit: number;
@@ -33,9 +38,8 @@ export type genericType<T> = {
 
 export type RecipesResponse = genericType<Recipe>;
 
-export type recipesParams = Partial<Pick<RecipesResponse, "limit" | "skip">>;
 export async function recipesDummy(
-  params: recipesParams
+  params: ApiParams
 ): Promise<RecipesResponse> {
   const { limit = 30, skip = 0 } = params;
 

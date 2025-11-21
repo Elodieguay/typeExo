@@ -9,7 +9,7 @@ export const useRecipes = () => {
     async function loadRecipes() {
       try {
         const data = await recipesDummy({ limit: 10, skip: 0 });
-        setRecipes(data.items);
+        setRecipes(data.recipes);
       } finally {
         setLoading(false);
       }
