@@ -1,26 +1,10 @@
-import { recipesDummy, type Recipe } from "./api";
-import { useEffect, useState } from "react";
-import RecipeCard from "./recipeCard";
-
+import RecipeCard from "./component/recipeCard";
+import { useRecipes } from "./hook/useRecipes";
 
 const App = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { recipes, loading } = useRecipes();
 
-  useEffect(() => {
-    async function loadRecipes() {
-      try {
-        const data = await recipesDummy({ limit: 10, skip: 0 });
-        setRecipes(data.recipes);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadRecipes();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>Chargement...</p>;
 
   return (
     <ul className="recipes-grid">
@@ -30,4 +14,4 @@ const App = () => {
     </ul>
   );
 };
-export default App
+export default App;
