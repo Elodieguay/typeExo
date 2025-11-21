@@ -16,3 +16,11 @@ export type Recipe = {
   reviewCount: number;
   mealType: string[];
 };
+
+export type Product = {
+  id: number;
+  title: string;
+  price: number;
+  rating: number;
+  images: string[];
+};
