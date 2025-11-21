@@ -2,6 +2,7 @@ import RecipeCard from "./component/recipeCard";
 import { useListDummy } from "./hook/useListDummy";
 import { type Product, type Recipe } from "./types/dummyTypes";
 import "./index.css";
+import { result } from "./tables";
 
 const App = () => {
   const { items: recipes, loading: loadingRecipes } = useListDummy<Recipe>(
@@ -22,6 +23,8 @@ const App = () => {
 
   if (loadingRecipes || loadingProducts) return <p>Chargement...</p>;
 
+  console.log(result);
+  
   return (
     <div className="list-container">
       <div className="list-flex">
@@ -51,5 +54,6 @@ const App = () => {
       </div>
     </div>
   );
+
 };
 export default App;

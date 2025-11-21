@@ -5,7 +5,16 @@
 //   skip: number;
 //   limit: number;
 // };
+
+import z from "zod";
+
 // // export type recipesParams = Partial<Pick<RecipesResponse, "limit" | "skip">>;
+export const listDummySchema = z.object({
+  items: z.array(z.any()),
+  total: z.number(),
+  skip: z.number(),
+  limit: z.number(),
+});
 
 export type ApiParams = {
   limit?: number;
