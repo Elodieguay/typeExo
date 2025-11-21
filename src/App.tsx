@@ -25,14 +25,14 @@ const App = () => {
   return (
     <div className="list-container">
       <div className="list-flex">
-        <ul className="flex wrap gap-16">
+        <ul>
           {recipes.map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </ul>
       </div>
       <div className="list-flex">
-        <ul className="flex wrap gap-16">
+        <ul>
           {products.map((product) => (
             <li key={product.id} className="recipe-card">
               <img
